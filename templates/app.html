@@ -1,0 +1,114 @@
+<!doctype html>
+   <html>
+     <head>
+       <title>OOV Curation Process</title>
+     </head>
+     <body>
+	{% extends "base.html" %}
+		{% block content_title %}Experiment with the OOV-aware Curation Process{% endblock %}
+		{% block content %}
+
+    <h4>Select An Message From Below</h4>
+
+  <div class="col-auto my-1">
+  <label for="inputMessage">See Result From Pre-defined Message</label>
+  <div>
+  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+    <option selected>Select a message...</option>
+    <option value="1">is determined to beat my bf at a video game... someday! ;-)</option>
+    <option value="2">soo amped for cubbfest!!!</option>
+    <option value="3">NHL AllStar Weekend :D is awesome love itt!!! <3</option>
+  </select>
+  </div>
+</div>
+<div>
+	 <p></p>
+	 <label>OR</label>
+</div>
+
+  <div class="form-group">
+    <label for="inputMessage">Input Your Own Message...</label>
+    <input type="text" class="form-control" id="inputMessage" placeholder="NHL AllStar Weekend :D is awesome love itt!! <3">
+  </div>
+  <button type="submit" class="btn btn-primary">Extract OOV...</button>
+
+
+<div>
+<h4><label> Your text sample:</label> <br>
+  <small class="tab" ><b><i> NHL AllStar Weekend :D is awesome love itt!!!</b></i></small></h4>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            <label>OOV-Aware Curation</label>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Feature</th>
+      <th scope="col">Output</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Tokenization</th>
+      <td>[NHL AllStar Weekend :D is awesome love itt !!!]</td>
+    </tr>
+    <tr>
+      <th scope="row">OOV-aware Preprocessing</th>
+      <td>[nhl &lt;allcaps&gt; allstar weekend :d &lt;emoji&gt; is awesome love itt &lt;misc&gt; ! &lt;repeated&gt;]</td>
+    </tr>
+    <tr>
+      <th scope="row">Emoticon OOV</th>
+      <td>[:d]</td>
+    </tr>
+    <tr>
+      <th scope="row">Elongation OOV</th>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <th scope="row">AllCap OOV</th>
+      <td>[NHL]</td>
+    </tr>
+    <tr>
+      <th scope="row">Misc OOV</th>
+      <td>[itt]</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        </div>
+        <div class="col-xs-6">
+            <label>Off-the-shelf NLP Processing(NLTK)</label>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Feature</th>
+      <th scope="col">Output</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Tokenization</th>
+      <td>[NHL AllStar Weekend : D is awesome love itt ! ! !]</td>
+    </tr>
+    <tr>
+      <th scope="row">Preprocessed</th>
+      <td>[nhl allstar weekend d awesome love itt]</td>
+    </tr>
+
+  </tbody>
+</table>
+        </div>       
+    </div>
+</div>
+
+</div>
+
+
+
+
+		{% endblock %}
+     </body>
+</html>

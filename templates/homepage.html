@@ -1,0 +1,103 @@
+<!doctype html>
+   <html>
+     <head>
+       <title>OOV Curation Process</title>
+     </head>
+     <body>
+	{% extends "base.html" %}
+		{% block content_title %}OOV Curation Process for Social Media Text{% endblock %}
+		{% block content %}
+		<h3>Introduction on OOV words</h3>
+		<p>
+			People have been posting on Social Media using language that combine spoken, written language. 
+			Text posted on social media they tend to be less grammatical, frequently contain spelling errors, unorthodox capitalization, and make frequent use of emoticons, abbreviations and hashtags. 
+			This research focused specifically on processing those non-standard English we refer as Out-of-dictionary words.
+		</p>
+		<table class="table", style="width:100%">
+
+		<thead class="thead-light">
+		  <tr>
+		    <th>OOV Category</th>
+		    <th>Definition</th> 
+		    <th>Example</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+		    <td><b>Word abbreviation<br>Phonetic substitution<br>Slangs</b></td>
+		    <td>word with missing or extraneous letters but still identifiable<br>frequent used abbreviation<br>internet slangs</td>
+		    <td>msg - message<br>ppl - people<br>b4 - before<br>tbh - to be honest</td>
+		  </tr>
+		  <tr>
+		    <td><b>Emoticons<br>Emojis</b></td>
+		    <td>Use of combination in punctuations to express emotion</td>
+		    <td>:-)<br>:D<br>=)</td>
+		  </tr>
+		  <tr>
+		    <td><b>Elongated Words/Punctuations</b></td>
+		    <td>sentiment expressed through lengthening words that repeat letter or punctuations</td>
+		    <td>yayyyyy - yay<br>goooood - good<br>??! - ?!</td>
+		  </tr>
+		  <tr>
+		    <td><b>Mis-spelled Words</b></td>
+		    <td>spelling errors</td>
+		    <td>firend - friend<br>achieve– acheive</td>
+		  </tr>
+		  <tr>
+		    <td><b>Communication Features</b></td>
+		    <td>Participate in #topic; interact with @user; share email or url</td>
+		    <td>@, #, RT<br>www.site.com, user@group.com</td>
+		  </tr>
+		  <tr>
+		    <td><b>Irregular Capitalization</b></td>
+		    <td>All capitalized words to emphasis or express emotion</td>
+		    <td>YEAH<br>DAMN</td>
+		  </tr>
+	 	</tbody>
+		</table>
+		<h3>Research Highlight Analyzing OOV-words</h3>
+		<p>
+			<ul>
+				<li>Social Media Text is valuable data source for psycholinguistic analysis. Usage/Growth/personal discourse</li>
+				<li>Current Natural Language Processing Tools are not having issues processing unstructured text. Analyzing social media text requires specific consideration.</li>
+				<li>OOV words are often be ignored or over simplied in social media text analytics, only In-V words are captured and analyzed for trait analysis</li>
+			</ul>
+		</p>
+				<p>We compare output of our proposed OOV-aware curation process with different text analytical approaches analyzing social media text, first using the most wide used pscyholinguistic dictionary <a href="https://liwc.wpengine.com/">Linguistic Inquiry and Word Count(LIWC)</a>, and one of most used python NLP library <a href="https://www.nltk.org/">Natural Language Toolkit(NLTK)</a>. Result suggest following issues:</p>
+			<ol>
+				<li>dictionary based LIWC perform poorly on social media text with frequent OOV words usage</li>
+				<li>current NLP tool having problem properly tokenizing unstructured social media text such as usage of url and emoticon</li>
+				<li>behavior of intentionally capitalize or elongdate words are ignored</li>
+			</ul>
+
+        <table class="table", style="width:100%">
+
+		<thead class="thead-light">
+		  <tr>
+		    <th>Text Analysis Approach</th>
+		    <th>Tokenization Result</th> 
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+		    <td><b>Example Message</b></td>
+		    <td>Goodbye Cambridge. Heeeeeeello White Mountains! EARTHQUAKE!!! Wait…what?!<br>Go Bears! :-) GO BEARS!<br>check out this article <a href="">http://www.theinsider.com/news/2300431_Man_vs_Wild_Saves_Life_of_9_Year_Old_Boy</a></td>
+		  </tr>
+		  <tr>
+		    <td><b>Processing using LIWC</b></td>
+		    <td>[goodbye white wait what]<br>[go go]<br>[out this :/ man wild life of uear old boy]</td>
+		  </tr>
+		  <tr>
+		    <td><b>Processing using NLTK</b></td>
+		    <td>[goodbye cambridge heeeeeeello white mountains earthquake wait…what]<br>[go bear go bear]<br>[check article http //www.theinsider.com/news/2300431_man_vs_wild_saves_life_of_9_year_old_boy]</td>
+		  </tr>
+		  <tr>
+		    <td><b>Processing using proposed OOV-aware curation process</b></td>
+		    <td>[goodbye cambridge . hello &lt;elongated&gt; white mountains ! earthquake &lt;allcap&gt; ! &lt;repeated&gt; wait … what ? !]<br>[go bear ! :-) &lt;emoticon&gt; go bear &lt;allcap&gt; !]<br>[check out this article &lt;url&gt;]</td>
+		  </tr>
+	 	</tbody>
+		</table>
+
+		{% endblock %}
+     </body>
+</html>

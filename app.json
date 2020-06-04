@@ -1,0 +1,13 @@
+{
+  "name": "OOV-aware Curation Process for Social Media Text",
+  "description": "",
+  "image": "heroku/python",
+  "repository": "https://liuk0804/oov_curation_process",
+  "keywords": ["python" ],
+  "env": {
+  },
+  "environments": {
+
+    }
+  }
+}
